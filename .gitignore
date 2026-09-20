@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.DS_Store
+.ipynb_checkpoints/
+*.egg-info/
+
+# dataset is cloned separately (sibling folder) and must never be pushed
+data/
+EAS510_Assignment1/
+
+# helper artifacts
+.submit_history
