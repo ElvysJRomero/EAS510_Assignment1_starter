@@ -22,7 +22,7 @@ git clone https://github.com/delveccj/EAS510_Assignment1.git
 
 # 3. Install dependencies:
 cd ~/workspace/EAS510_Assignment1_starter
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 # 4. Point this box at YOUR fork (run once):
 ./setup_git.sh
