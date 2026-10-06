@@ -136,15 +136,21 @@ def rule3_template(target, input_path):
     out = {"rule": 3, "name": "Template", "fired": False, "score": 0,
            "out_of": 40, "note": "Match score 0.00", "metric": 0.0}
     try:
+        #Loads target and input images in grayscale
         src_g = _gray(target["path"])
         nd_g = _gray(input_path)
         if src_g is None or nd_g is None:
             return out
+        #Size difference check (is it taller or wider?)
         if (src_g.shape[0] < nd_g.shape[0]) or (src_g.shape[1] < nd_g.shape[1]):
+            #Shrink suspect to fit in input image
             nd_g = cv2.resize(nd_g, (min(nd_g.shape[1], src_g.shape[1]),
                                      min(nd_g.shape[0], src_g.shape[0])))
+        #Measure how well suspect matches input at each location
         res = cv2.matchTemplate(src_g, nd_g, cv2.TM_CCOEFF_NORMED)
+        #Takes best match
         metric = float(res.max())
+        #Metric between 0-1, 3 decimal places
         out["metric"] = round(max(0.0, min(1.0, metric)), 3)
         out["note"] = f"Match score {out['metric']:.2f}"
         if out["metric"] >= 0.4:
