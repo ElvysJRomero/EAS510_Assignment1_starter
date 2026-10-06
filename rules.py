@@ -109,10 +109,13 @@ def rule2_histogram(target, input_path):
     out = {"rule": 2, "name": "Histogram", "fired": False, "score": 0,
            "out_of": 30, "note": "Correlation 0.00", "metric": 0.0}
     try:
+        #Produce color histogram for both target and input images
         hs, hi = _hist(target["path"]), _hist(input_path)
         if hs is None or hi is None:
             return out
+        #Histograms correlation comparison (higher = more similar)
         corr = float(cv2.compareHist(hs, hi, cv2.HISTCMP_CORREL))
+        #metric between 0-1, 3 decimal places
         out["metric"] = round(max(0.0, min(1.0, corr)), 3)
         out["note"] = f"Correlation {out['metric']:.2f}"
         if out["metric"] >= 0.5:
