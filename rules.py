@@ -81,13 +81,19 @@ def rule1_metadata(target, input_path):
     out = {"rule": 1, "name": "Metadata", "fired": False, "score": 0,
            "out_of": 30, "note": "Size ratio 0.00", "metric": 0.0}
     try:
+        #Target and input file size in bytes
         src_size = os.path.getsize(target["path"])
         in_size = os.path.getsize(input_path)
+        #Target image dimensions (width, height)
         src_w, src_h = _size(target["path"]) or (0, 0)
         in_w, in_h = _size(input_path) or (0, 0)
+        #Target:input file size
         size_ratio = min(src_size, in_size) / max(src_size, in_size)
+        #Target:input image area
         area_kept = (in_w * in_h) / max(1, src_w * src_h)
+        #50% file size + 50% image area
         metric = 0.5 * size_ratio + 0.5 * min(1.0, area_kept)
+        #metric between 0-1, 3 decimal places
         out["metric"] = round(max(0.0, min(1.0, metric)), 3)
         out["note"] = f"Size ratio {out['metric']:.2f}"
         if out["metric"] >= 0.6:
