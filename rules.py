@@ -158,7 +158,7 @@ def rule3_template(target, input_path):
         #Metric between 0-1, 3 decimal places
         out["metric"] = round(max(0.0, min(1.0, metric)), 3)
         out["note"] = f"Match score {out['metric']:.2f}"
-        if out["metric"] >= 0.4:
+        if out["metric"] >= 0.2:
             out["fired"] = True
             out["score"] = int(round(out["out_of"] * out["metric"]))
     except Exception:
