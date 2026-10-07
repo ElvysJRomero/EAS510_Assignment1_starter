@@ -35,9 +35,20 @@ def rule4_orb(target, input_path):
 
     try:
         src = rules._gray(target["path"])
-        inp = rules._gray(input_path)
+        inp = rules._Gray(input_path)
         if src is None or inp is None:
             return out
-    except Exception:
-        pass
-    return out
+
+        orb = cv2.ORB_create()
+        #Detect keypoints and compute binary descriptors
+        src_kp, src_desc = orb.detectAndCompute(src, None)
+        inp_kp, inp_desc = orb.detectAndCompute(inp, None)
+        if src_desc is None or inp_desc is None:
+            return out
+
+        #NORM_HAMMING required for binary features -- crossCheck returns only consistent mutual pairs
+        matcher = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+        matches = matcher.match(src_desc, inp_desc)
+
+        #Valid m distance < 50
+        valid = [match for match in matches if match.distance < 50]
