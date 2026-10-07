@@ -85,3 +85,12 @@ restart never touches GitHub.
 ## License
 
 Apache 2.0. See `LICENSE`.
+
+## Observed weakness in V1: what failed and why
+For V1 with the easy and random images, I raised correct match percentage from 51.7% (31/60) to 61.7% (37/60) by tuning Rule 3's metric threshold from 0.4 to, ultimately,
+0.1. I focused on Rule 3's threshold specifically because many of the rejected crop cases were already using valuable evidence from Rules 1 and 2, whereas Rule 3 was 
+producing nonzero template similarity scores which were being discarded because the 0.4 threshold was too high, meaning that while Rules 1 and 2 were
+contributing to the overall score, Rule 3 was often contributing 0 points. Since Rule 3 carries the highest weight (40 points, as opposed to 30 for Rules 1 and 2), 
+allowing weaker template evidence to contribute was enough to recover 6 correct near-threshold matches without allowing any random samples to be accepted. It should
+be noted that there was 1 sample that was matched to the incorrect target image (modified_04_crop_75pct.jpg) to begin with, and this persisted after tuning the Rule
+3 threshold.
