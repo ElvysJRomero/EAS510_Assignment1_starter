@@ -54,8 +54,6 @@ def rule4_multiscale(target, input_path):
 
             best_score = max(best_score, score)
 
-        out["metric"] = round(best_score, 3)
-
         #How much did the different scales improve the match?
         improvement = best_score - base_score
 
