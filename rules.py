@@ -33,13 +33,16 @@ from PIL import Image
 #: Rule names used by SimpleDetector.evaluate() (V1).
 RULES = ("rule1_metadata", "rule2_histogram", "rule3_template")
 
-
+#Caches image path
 @lru_cache(maxsize=256)
+
+#Given filename, load image w/ OpenCV
 def _arr(path):
     return cv2.imread(path)
 
 
 @lru_cache(maxsize=256)
+#Creates color histogram
 def _hist(path):
     img = _arr(path)
     if img is None:
@@ -49,7 +52,7 @@ def _hist(path):
     cv2.normalize(hist_all, hist_all)
     return hist_all
 
-
+#Shrinks image while keeping aspect ratio
 def _downscale(img, max_dim=512):
     """Fit an image into `max_dim` before expensive cv2 work."""
     h, w = img.shape[:2]
@@ -60,6 +63,7 @@ def _downscale(img, max_dim=512):
 
 
 @lru_cache(maxsize=256)
+#Grayscales image
 def _gray(path):
     img = _arr(path)
     if img is None:
@@ -68,6 +72,7 @@ def _gray(path):
 
 
 @lru_cache(maxsize=256)
+#Returns image (width, height)
 def _size(path):
     try:
         with Image.open(path) as img:
@@ -96,7 +101,7 @@ def rule1_metadata(target, input_path):
         #metric between 0-1, 3 decimal places
         out["metric"] = round(max(0.0, min(1.0, metric)), 3)
         out["note"] = f"Size ratio {out['metric']:.2f}"
-        if out["metric"] >= 0.6:
+        if out["metric"] >= 0.5:
             out["fired"] = True
             out["score"] = int(round(out["out_of"] * out["metric"]))
     except Exception:
