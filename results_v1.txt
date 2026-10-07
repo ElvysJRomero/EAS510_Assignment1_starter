@@ -125,10 +125,10 @@ Rule 3 (Template): FIRED - Match score 0.31 -> 12/40 points
 Final Score: 33/100 -> REJECTED
 
 Processing: modified_03_crop_50pct.jpg
-Rule 1 (Metadata): NO MATCH - Size ratio 0.38 -> 0/30 points
-Rule 2 (Histogram): FIRED - Correlation 0.74 -> 22/30 points
-Rule 3 (Template): FIRED - Match score 0.24 -> 9/40 points
-Final Score: 31/100 -> REJECTED
+Rule 1 (Metadata): NO MATCH - Size ratio 0.28 -> 0/30 points
+Rule 2 (Histogram): FIRED - Correlation 0.86 -> 26/30 points
+Rule 3 (Template): FIRED - Match score 0.18 -> 7/40 points
+Final Score: 33/100 -> REJECTED
 
 Processing: modified_03_crop_75pct.jpg
 Rule 1 (Metadata): FIRED - Size ratio 0.59 -> 18/30 points
@@ -205,8 +205,8 @@ Final Score: 28/100 -> REJECTED
 Processing: modified_05_crop_75pct.jpg
 Rule 1 (Metadata): FIRED - Size ratio 0.61 -> 18/30 points
 Rule 2 (Histogram): FIRED - Correlation 0.99 -> 30/30 points
-Rule 3 (Template): NO MATCH - Match score 0.11 -> 0/40 points
-Final Score: 48/100 -> REJECTED
+Rule 3 (Template): FIRED - Match score 0.11 -> 4/40 points
+Final Score: 52/100 -> MATCH to original_05
 
 Processing: modified_05_format_png.png
 Rule 1 (Metadata): FIRED - Size ratio 0.56 -> 17/30 points
@@ -235,8 +235,8 @@ Final Score: 29/100 -> REJECTED
 Processing: modified_06_crop_50pct.jpg
 Rule 1 (Metadata): NO MATCH - Size ratio 0.27 -> 0/30 points
 Rule 2 (Histogram): FIRED - Correlation 0.98 -> 29/30 points
-Rule 3 (Template): NO MATCH - Match score 0.18 -> 0/40 points
-Final Score: 29/100 -> REJECTED
+Rule 3 (Template): FIRED - Match score 0.18 -> 7/40 points
+Final Score: 36/100 -> REJECTED
 
 Processing: modified_06_crop_75pct.jpg
 Rule 1 (Metadata): FIRED - Size ratio 0.61 -> 18/30 points
@@ -265,8 +265,8 @@ Final Score: 90/100 -> MATCH to original_07
 Processing: modified_07_crop_25pct.jpg
 Rule 1 (Metadata): NO MATCH - Size ratio 0.08 -> 0/30 points
 Rule 2 (Histogram): FIRED - Correlation 0.63 -> 19/30 points
-Rule 3 (Template): NO MATCH - Match score 0.19 -> 0/40 points
-Final Score: 19/100 -> REJECTED
+Rule 3 (Template): FIRED - Match score 0.19 -> 8/40 points
+Final Score: 27/100 -> REJECTED
 
 Processing: modified_07_crop_50pct.jpg
 Rule 1 (Metadata): NO MATCH - Size ratio 0.29 -> 0/30 points
